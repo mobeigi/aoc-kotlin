@@ -15,3 +15,4 @@ You can solve the puzzle and provide an answer using the language of your choice
 [kotlin]: https://kotlinlang.org
 [slack]: https://surveys.jetbrains.com/s3/kotlin-slack-sign-up
 [template]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template
+[file:cover]: .github/readme/cover.png
