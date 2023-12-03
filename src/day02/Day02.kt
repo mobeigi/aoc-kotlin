@@ -7,33 +7,8 @@ import readInput
 
 private object Day02 {
     data class RevealSet(val red: Int = 0, val green: Int = 0, val blue: Int = 0)
-    data class Game(val id: Int, val revealSet: List<RevealSet>)
 
-    /** Parse input into list of Game */
-    private fun parseToGames(input: List<String>): List<Game> =
-        input.map { line ->
-            val components = line.split(":", ";")
-            check(components.size > 2) // at least game identifier and 1 reveal set
-            val id = components.first().split(" ").last().toInt()
-            val revealSet =
-                components.drop(1).map {
-                    val revealSetComponents = it.split(",")
-                    var red = 0
-                    var green = 0
-                    var blue = 0
-                    revealSetComponents.forEach {
-                        val (cubeCount, cubeColour) = it.trim().split(" ")
-                        when (cubeColour) {
-                            "red" -> red = cubeCount.toInt()
-                            "green" -> green = cubeCount.toInt()
-                            "blue" -> blue = cubeCount.toInt()
-                            else -> throw IllegalArgumentException("Unknown colour $cubeColour")
-                        }
-                    }
-                    RevealSet(red = red, green = green, blue = blue)
-                }
-            Game(id, revealSet)
-        }
+    data class Game(val id: Int, val revealSet: List<RevealSet>)
 
     fun part1(input: List<String>): Int {
         val games = parseToGames(input)
@@ -73,6 +48,32 @@ private object Day02 {
             minRed * minGreen * minBlue
         }
     }
+
+    /** Parse input into list of Game */
+    private fun parseToGames(input: List<String>): List<Game> =
+        input.map { line ->
+            val components = line.split(":", ";")
+            check(components.size > 2) // at least game identifier and 1 reveal set
+            val id = components.first().split(" ").last().toInt()
+            val revealSet =
+                components.drop(1).map {
+                    val revealSetComponents = it.split(",")
+                    var red = 0
+                    var green = 0
+                    var blue = 0
+                    revealSetComponents.forEach {
+                        val (cubeCount, cubeColour) = it.trim().split(" ")
+                        when (cubeColour) {
+                            "red" -> red = cubeCount.toInt()
+                            "green" -> green = cubeCount.toInt()
+                            "blue" -> blue = cubeCount.toInt()
+                            else -> throw IllegalArgumentException("Unknown colour $cubeColour")
+                        }
+                    }
+                    RevealSet(red = red, green = green, blue = blue)
+                }
+            Game(id, revealSet)
+        }
 }
 
 fun main() {
