@@ -7,10 +7,7 @@ import readInput
 
 private object Day02 {
     data class RevealSet(val red: Int = 0, val green: Int = 0, val blue: Int = 0)
-
     data class Game(val id: Int, val revealSet: List<RevealSet>)
-
-    val MAX_CAPACITY = RevealSet(red = 12, green = 13, blue = 14)
 
     /** Parse input into list of Game */
     private fun parseToGames(input: List<String>): List<Game> =
@@ -40,12 +37,13 @@ private object Day02 {
 
     fun part1(input: List<String>): Int {
         val games = parseToGames(input)
+        val part1MaxCapacity = RevealSet(red = 12, green = 13, blue = 14)
         return games.sumOf { game ->
             val isValidGame =
                 game.revealSet.all {
-                    val redLeft = MAX_CAPACITY.red - it.red
-                    val greenLeft = MAX_CAPACITY.green - it.green
-                    val blueLeft = MAX_CAPACITY.blue - it.blue
+                    val redLeft = part1MaxCapacity.red - it.red
+                    val greenLeft = part1MaxCapacity.green - it.green
+                    val blueLeft = part1MaxCapacity.blue - it.blue
                     redLeft >= 0 && greenLeft >= 0 && blueLeft >= 0
                 }
 
