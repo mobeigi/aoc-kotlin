@@ -2,7 +2,6 @@ package day02
 
 import day02.Day02.part1
 import day02.Day02.part2
-import println
 import readInput
 
 private object Day02 {
@@ -81,11 +80,11 @@ fun main() {
 
     // Test part 1
     val part1Result = part1(input)
-    part1Result.println()
+    println(part1Result)
     check(part1Result == 2101)
 
     // Test part 2
     val part2Result = part2(input)
-    part2Result.println()
+    println(part2Result)
     check(part2Result == 58269)
 }
